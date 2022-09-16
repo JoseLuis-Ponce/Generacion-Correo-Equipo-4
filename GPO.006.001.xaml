@@ -1,11 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GPO_006_001" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GPO_006_001" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_HojaRecursos" Type="InArgument(x:String)" />
+    <x:Property Name="in_URLHojaRecursos" Type="InArgument(x:String)" />
+    <x:Property Name="in_PathDescargas" Type="InArgument(x:String)" />
+    <x:Property Name="in_NombreArchivo" Type="InArgument(x:String)" />
+    <x:Property Name="in_NombreHoja" Type="InArgument(x:String)" />
+    <x:Property Name="out_dt_Insumos" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>550,902</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>597,2147</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GPO_006_001_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -39,6 +43,14 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -73,95 +85,118 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GPO_006_001" sap:VirtualizedContainerService.HintSize="552,837" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="variable1" />
-    </Sequence.Variables>
+  <Sequence sap2010:Annotation.AnnotationText="GPO.009.001&#xA;Ingresar al sheets &quot;Hoja de recursos&quot;." DisplayName="GPO_006_001" sap:VirtualizedContainerService.HintSize="552,2082" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Abrir navegador para descargar el archivo" sap:VirtualizedContainerService.HintSize="510,745" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://drive.google.com/drive/u/3/folders/1shJ6qV-pjCpCZVN3UyIhxG2wc43VTxtk">
-      <ui:OpenBrowser.Body>
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Navegar al archivo Generación de Correos" sap:VirtualizedContainerService.HintSize="510,1948" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="241eb009-05d2-4e58-a058-09f4e0649184" Version="V2">
+      <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,644" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1732" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximizar ventana de navegacion" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
-            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Uso de ventana donde se encuentra el archivo" sap:VirtualizedContainerService.HintSize="434,490" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="dfbe62e59e47e97fdee313124c458c0e" Selector="&lt;html app='chrome.exe' title='Generación de Correos - Google Drive' /&gt;">
-              <ui:BrowserScope.Body>
+            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximizar ventana de navegacion" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_2" />
+            <uix:NClick ClickType="Single" DisplayName="Click archivo 'Hoja de recursos'" sap:VirtualizedContainerService.HintSize="434,156" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="241eb009-05d2-4e58-a058-09f4e0649184" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/u/0/folders/1shJ6qV-pjCpCZVN3UyIhxG2wc43VTxtk" DesignTimeRectangle="322, 392, 358, 40" FriendlyName="'Hoja de recursos'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='20' parentid=':4' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='tyTrke M3pype' parentid=':4' tag='DIV' aaname='' check:innerText='Hoja de recursos' /&gt;" Guid="0380ccb3-cffb-4e04-b150-e32731de71fa" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAWoAAAAsCAYAAABMrvImAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVWSURBVHhe7dr/Z1tfHMfx/mH7YTpq/WX5qXwoozNaI+rDYnRGP6q1URnREvuhlFIrIYTRWpnVp0q0v1SYpD4apuFDqlxKKO/P+9ycm5yk96btlg8nPB8ccr+cc8/ND6978s4dEwCA18aqZ+dCo9FoNH8bK2oA8BxBDQCeI6gBwHMENQB4jqAGAM8R1ADgOYIaADxHUAOA5whqAPAcQQ0AniOoAcBzBDUAeI6gBgDPEdQA4DmCesSdnZ1JPp8Pm/kcSdoPYPQMN6h/Hsh2rijVa7v9i04/PpFHr4rStNtItrKyIplMJmwmlCNJ+wGMHieoT2Tt8RPJFBp22yrn5JHuXyvb7QFaf6/K04lZKdXtjl9EUN+fG8jmcyRpP4DRM9SgHhaC+v5MWcMEcVzpI24/gNHz8KC+acrxelqeTWiYTqRkbqko54E9Fp6blpIdovWjKNnnk2H/8VRaNo8SojeoyHY6JeN63tPnq5J97QZ1IOeFZZmb1H2PJ3uv5wqvPStrudfyNJpD31wz60fSvGmfLkFNSkszem7fsf77bRQlo9vt76UhpVd6/rucfPpD7+vjie4LpLrxWqbt/J6l83L8b9hT9c59+s/eY8n9AKDrgUHdktPclAZbWgqVhjRrXyQ7pSH8Zl9jJzrXhuTVvrzXgJzLn0jzqiHHH02/Rfl2ZU50NeXbGw291IIUynW5KG9IxgSrDepgd0EDfEqyX+sS1PfD601pQLbanbvsPMdfLkqhcCBVvU4178y1shWO276/QA6X9JpTy7JXa3SuObddv19Q63zerhelpPNtfV/W+aVlW68RNPSBY47b76NZTDtzP5HNtLlmXqr6QBjU777K5bJ8/vw5XDWbZj6b1fPl5WV43HyO2w9gtNwKahNScS0MrusDyernF5vdIrQJUhPOe2Y16Ab1TUuCq0Ba0QrWPeayY87vdA90Sx82GJcOOsF8sTOr4ZuTU7vdEY4/K6WfdvtG70fD153r8QcdK63j6kPkL72m+1A6/6Kr5J0TCe4T1B+O2sdU8HWxHcZfatI0k7wO9L7Nh7oUpnvnLpW8TOnq+ZMuxJP73S0qa0Q16P5mjkXlDvc8dz+A0XErqOe3amHAdtrX5W5w2dDqhJjhBnBPGNuf/al26aPdYoI6ZsxuUCc9PJKC2hnfjnurrxk37j4i9wnqsORh3QRyurVgyxumdLMspR9mXRzzC8W9bmK/uw0K6aiZcwyzmo7bD2B0PKz0EbP6TVxRh6vHlKx9t3Xp/iCNDFxRR6vSfV0FOw+PuJVn//h23LnNitNPW6B97TH3XoPakRxXGtL6Z0teRPdr3BXUZiVsxlStZkUKpryRyks1mruz+nZX1Mn97uYG76Bm7O3txe4HMDr+vxr1SU5/2qcku9uuzxbeab+4oNYxj1dM7XZRSjpmf426U+c1JYKrupxuL8q8ht+tteetB0F3rptlnUOjJoe5WXm7U9cjvTXqqH4d1qhtWWR6ZV8ubB/zJ2dSUF9sz3S+j0Dnt7eg487syIUeG1SjHtQPAFwPDGrlvkmhq8PEtz7c8yZnJJtbbq9UnQVmR99bH5ur052g7pRQorcjZhJKBLeCWvXNteeti6S3PtTF7qK8MH3M/o28vO98L3GlD3MN9+2NVTmM6uT9c3ff7BjYDwC6nKAegriwBAD8lqEFdatZl+pGOgzqsF4NABiKoQV1+Aeg/oSf36h0X0cDAPy24ZY+AABDR1ADgOcIagDwHEENAJ4jqAHAcwQ1AHiOoAYAzxHUAOA5ghoAPEdQA4DnCGoA8NxY9excaDQajeZvY0UNAJ4jqAHAayL/Ac6uy3OTtCWSAAAAAElFTkSuQmCC" InformativeScreenshot="e10c2499159152d05da43fffb13aee2c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Generación de Correos - Google Drive' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ClickType="Single" DisplayName="Click opciones de archivo" sap:VirtualizedContainerService.HintSize="434,156" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="241eb009-05d2-4e58-a058-09f4e0649184" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/u/0/folders/1shJ6qV-pjCpCZVN3UyIhxG2wc43VTxtk" DesignTimeRectangle="1167, 191, 4, 16" ElementType="Icon" FriendlyName="'PATH'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;svg&amp;gt;path' idx='7' parentid='drive_main_page' tag='path' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='' parentid='drive_main_page' tag='path' aaname='' /&gt;" Guid="5c820c87-2017-43d6-8c44-9dfa0e85d468" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUCAYAAACwG3xrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABDSURBVChTY3jw4MF/fJh4BQcOHvpf39QGxiA2hoL84vL/8ckZYAxShFcBiI2hAGQsSAKnFbgw8QpGfYGpgK6+ePAfAPcdERu2Bx4bAAAAAElFTkSuQmCC" InformativeScreenshot="754950b7403b6bec489d6e2b2ab0d09e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Generación de Correos - Google Drive' /&gt;" SearchSteps="Selector" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ClickType="Single" DisplayName="Click Descargar archivo" sap:VirtualizedContainerService.HintSize="434,156" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="241eb009-05d2-4e58-a058-09f4e0649184" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/u/0/folders/1shJ6qV-pjCpCZVN3UyIhxG2wc43VTxtk" DesignTimeRectangle="933, 619, 232, 32" ElementType="Text" FriendlyName="'Descargar'" FullSelectorArgument="&lt;webctrl aaname='Descargar' parentid=':5v' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Descargar' parentid=':5v' tag='DIV' type='' class='a-v-T' check:innerText='Descargar' /&gt;" Guid="87490331-27ab-4521-b1fa-8b221cf424e3" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAOwAAAAkCAYAAACKaNbNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPYSURBVHhe7Zr5S1RRFMf7wyKijCLJ1BajSFrUTKVo36GIwkySlIIybbNFS2mhvWjfV1uMTNJwSWumzAVzPc33NHeYXHn9Ise+H3gwb867570f5vPOuffOKCGEmIHCEmIICkuIISgsIYagsIQYgsISYggKS4ghKCwhhqCwhBiCwhJiCApLiCEoLCGGCAnb1tYmq9aul9Fjx+sxNmKiLF2+Usrevw9eQQgZbvoIe6q4RM9/NjXJ5StXJXbmLLn/4KF+RwgZXgYU1nHx0mVZlJImjY2Net7T0yNXr9+Q6XGzZcy4CbJi9VppaPiqsc7OTjl0pEAmRUZphUY+FwM1tbVatTEuMipGSs6c1TGg7dcv2Zeb99dYn8+vsY8VFZK0OE32H8iXiEmT5fGTpzru4OGjeo5ciMXNnqsx4DUfIRYYUtgv9fUSvyBB3pWV6fnde/clMTlVqmtqVApIg3EYf+XadVmQmByKZe3OkQ2bNkt7e7vKkpicIoVFp1W2yqoqzXv7zl3Nm5uXL6vXbdAXA67Pys6R9IxM6erqUsEip8bK9h07pbauTjo6OvRFMmtOvD5Xc3OzHCk4pi8CJ5/XfIRYYEhh/d+/y5z4+SqCu+bmrdvB6B+hIeKnykodu2XrtlDV9Pv98uz5CxUGY1KXLJOWlhaNgUePn6jkqNpowZHfgfvFz0+QHz8aVbCFSYv1XqC/Zw1/Tq/5CLGCJ2HdZ7cw5Q5UK0hQVfVZqyYOtMZogSEPQN4dmbtC571pbW0NtLAHtIV1eXEv3BO5k1OX6GcQ/kyO3t95yUeIFTy1xPiBz1uYJK9KS4PRvqC6lr5+I9l79sqU6GmSf+iwtqGDCYs4Wla0sE4iiPevwnrNR4gVPC06tQSqFhaNCo6fCEb/LEJ1Bw5I8ubtW6murglGRJ6/eKmCQ4z+WmJU5A/l5aF7hwv44OGjAQXD/HjN+o1y/sJFPQeIOWG95iPECgMKizlg0eliiYqd8de2DgSOmR6nMnZ3d+scFZXMF5ivogXFqvE3n08r7fGThSp7UyDXYItOWPTB3Hd7ekZIKCxeDSYYngPjEeu96PQv+QixQB9h3XxvoD9OoJqiskVPm6nXQQRUVhC+lQJ50pYuUzEd4ds62BbCPi/yAQgN2RFDzmMnTqqQaMn7EwzSh2/r4GWBnK6qes1HiAVCwlrDteIOiIiVX8hIyEjFrLDnzl+QjMxd2m67PV90COgUCBmpmBU2vP3u719VhIxEzApLyP8IhSXEEBSWEENQWEIMQWEJMQSFJcQQFJYQQ1BYQgxBYQkxBIUlxBAUlhAziPwGvSKcPdu/FtwAAAAASUVORK5CYII=" InformativeScreenshot="c9f661384d2db1b4a9fa08b0b5f56cbb.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Generación de Correos - Google Drive' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="1167, 191, 4, 16" ElementType="Icon" FriendlyName="'PATH'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;svg&amp;gt;path' idx='7' parentid='drive_main_page' tag='path' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='' parentid='drive_main_page' tag='path' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAAgAAAAUCAYAAACwG3xrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABYSURBVChTY9i7d+9/fJh4BUuXrfhfXlULxiA2hoLsvOL/8ckZYAxShFcBiI2hAGQsSAKnFbgw8QpGui/27NnzH4TRfQEThytYsnQ53BcgNoYCXJiAgj3/AWcd3UZi3DjBAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Uso ventana guardar archivo" sap:VirtualizedContainerService.HintSize="434,650" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="f8dc76e2461a0a97f64a92bfc5263ef5" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Guardar como' /&gt;">
+              <ui:WindowScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,344" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,504" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click seleccion archivo" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_RIGHT">
-                      <ui:Click.CursorPosition>
-                        <ui:CursorPosition Position="Center">
-                          <ui:CursorPosition.OffsetX>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetX>
-                          <ui:CursorPosition.OffsetY>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetY>
-                        </ui:CursorPosition>
-                      </ui:Click.CursorPosition>
-                      <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3a90cafc-5727-4928-9f89-5e07ac66352f" InformativeScreenshot="06168ea9c642af6103ca59c5b080b6ea" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;c-wiz&amp;gt;div&amp;gt;c-wiz&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='20' parentid=':4' tag='DIV' /&gt;">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:Click.Target>
-                    </ui:Click>
-                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click descargar archivo" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
-                      <ui:Click.CursorPosition>
-                        <ui:CursorPosition Position="Center">
-                          <ui:CursorPosition.OffsetX>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetX>
-                          <ui:CursorPosition.OffsetY>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetY>
-                        </ui:CursorPosition>
-                      </ui:Click.CursorPosition>
-                      <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8da141f3-877b-47eb-bf89-2c0e4335bcac" InformativeScreenshot="7fbb3b41ccbb4c7fc3428b3470ca05bc" Selector="&lt;webctrl aaname='Descargar' parentid=':b8' tag='DIV' /&gt;">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:Click.Target>
-                    </ui:Click>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Dirección: Descargas'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="334,216" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="241eb009-05d2-4e58-a058-09f4e0649184" Text="[in_PathDescargas + &quot;[k(enter)]&quot;]" Version="V1">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="152, 41, 222, 34" ElementType="Toolbar" FriendlyName="'Dirección: Descargas'" FullSelectorArgument="&lt;wnd ctrlid='1001' title='Dirección: Descargas' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1001' title='Dirección: Descargas' /&gt;" Guid="06a6b352-9461-4459-aec8-876ab79e1037" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAOIAAAAmCAYAAADZaUd1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAATkSURBVHhe7Z1bT1xVFMf7oNFIjK0XZIR6IRpgprVaqdQHPgUfghDe+ALVNCS2EhhAaYptB6zGC14q0QajCS94qxYJT4SE8MAjDyQk8MiS/6GLLLZ7z8wZD3Bm+t/JL+fsvdZZe8/a+z97z2mbnshkMkIIOV4oREJSwImuri4hhBwv3BEJSQEUIiEpgEIkJAVQiISkAAqRkBRAIRKSAihEQlJALCG2z1yS7LeXvTZCSOXEEuI7/wxK6+xHXhshpHJiC/HVn8e8NkJI5cQS4sX5IXll5prXRgipnFhC7Lg/JC/+eN1rO0w6Oztlc3NTbBkYGPD6poHu7m7Z2NiIrj77cePL5/T0tNeXHA2xhHjhryFpnB732g4TLJz19fWyFnYc34cVN0cqzIWFhf/4kqMhlhDb7w1Lw3c3vLZy6O3tlb6+Pq+tGBSinyTziXu0wWZ9ydFQVIgXZi7t8q6cPtca1d/8fVie/fpWdP/C2TZ5+dP35fTklQPPFGNqaio6BvX393vtIULiymazsrq6GsVEKRQKB45c+g2P57a3t6M22H2LLeRj22dnZ/fH4Y7J1n33GJvGscdAGx8lzpE7yXxqLrV/Oy7Nh5tv9Q21I/9adC6078XFxf24ti+b41CMUH/VTFEhvnX3PTn/Z15ydy5L4+utcnZuRE59WZDMmTZpLFyVhjs35Lnx8pPQ3Nwsc3NzUfLiLB5MlhWYTiAmQCfH+tqJdOt4xv09FPLRfnWi0YYFA79i/bj3iIGFgwWENv396Ma3NtRL8X/yaccOrBBdu+YDVzff+pybU4svH+rv5sDmOBTDN45qp6gQm3Z3wpapfnntl7Fo98OfIT71eUHqPx6Qp7+6KSfHBqUhl/U+GyKXy8nW1pbs7OxIS0uL18fFXRgK6pg0uwhcX/WxxZ3EkA/al5aWosXmxnb7CdlcP4DYWExogw0+rk3rpUgqn/iM+KxoA6F8uPn2fQYFn0MLnoOv2zeuoRyHYgB3HNVOyd+IOII2TVyJdr/6b25GO+KTn01IXT4vzz9IXrkk+Q1uwYSgYNJ8Ex1aKErIB+1JC1F3kCSEmGQ+7Vh847LYfId8bbsVuds3rqEch2JoH3Yc2latlPey5kxWTo0NSd3tSXl84rY8NjAq9W3xRAiS/o1owaQA1xd1exTyEfLRdp1o2PVb2QoKNlx93/pubLTp4nLjWxvqpUgqn+44tF4sZ7ABzYPri1hohx392ON4sb4RR/MYimH70XHYtmqkPCHugt3v0Q9G5ZGrH+6KMOf1KUVPT0/Fb/kwWbYg+ZgoLbDDD/7YVVBwRR2Th8nVou2WkI/tw32RYG3Ly8v7NrvY9B4vJ7ToonP71QWotlIklU9fv3ZcKLpTa7H5duPBTwWKsra2JisrKwfyYfsL5TgUIzSOaqZsIZK9BecuolJU8szDDPKEfNWCuOIQFCL+pQX+bim4OD8oHfND0nE/L2//nZf2e3k5/8ewvPHbiJz7dTR6oeOLUWtQiIcPdl49jvrstUpQiK0P3pY2/3RNXrp7XZp+GJfM93svbJ6ZuiUnv9h7afPEJ5NSNzLsjVFrUIjJY4+fKLVy1IwLj6aEpAAKkZAUQCESkgIoREJSAIVISAqgEAlJARQiISmAQiQkBVCIhKQA/kelhKQA7oiEpAAKkZBjJyP/AuM5uFXfAqjmAAAAAElFTkSuQmCC" InformativeScreenshot="97b9c49b160519736afa8535281ffa70.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Guardar como' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="374, 41, 37, 37" ElementType="Button" FriendlyName="'Ubicaciones anteriores'" FullSelectorArgument="&lt;wnd cls='ToolbarWindow32' title='Barra de herramientas de área de dirección' /&gt;&lt;ctrl name='Barra de herramientas de área de dirección' role='tool bar' /&gt;&lt;ctrl name='Ubicaciones anteriores' role='push button' /&gt;" FuzzySelectorArgument="&lt;wnd cls='ToolbarWindow32' title='Barra de herramientas de área de dirección' /&gt;&lt;ctrl name='Barra de herramientas de área de dirección' role='tool bar' /&gt;&lt;ctrl name='Ubicaciones anteriores' role='push button' automationid='' check:text='Ubicaciones anteriores' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACkAAAApCAYAAACoYAD2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACOSURBVFhH7di7DcAgDEXRrOF92IDVmYBFHLlAyocKbiRQXnEb0xxh0uQwM1+9PZA5Z189rZtKSCohqYSkEpJKSCohqf6BLKV4Suk1j1mcPecjTSMDU2u9QXuzmZB1X1E0MMLeZMPRwAj9cNpN9s5mQpFfJSSVkFRCUglJJSTVHsjeT8vV0rqphKTaAGl+AhOXyLHVygh0AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                          <uix:TargetAnchorable.PointOffset>
+                            <uix:PointOffset Position="BottomRight" X="-6" Y="-3" />
+                          </uix:TargetAnchorable.PointOffset>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NClick ClickType="Single" DisplayName="Click 'unchecked'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="241eb009-05d2-4e58-a058-09f4e0649184" Version="V1">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="741, 434, 88, 26" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Guardar' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Guardar' check:text='unchecked' /&gt;" Guid="3f6ceea5-61a4-479d-a3a6-480f878ba5cb" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFwAAAAeCAYAAAChf3k/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHpSURBVGhD7Zo9joMwEEb3UGmiSPmRECUX4DIcJAUVbc7gQ1CloqDKIWb5nLAZOzYJrLGLzCc9KWBjlsdgVjI/eZ7TdrsVVmK329HhcCB4BiI8EqN0ER4JVLpTeJZl1DQN3W43kiwL3MEhXHK3L8LR4Xq90uVyoaIoaLPZCAuAOziESy79RTjuCjq6BhHmA5dw6hWOR0EqOxxwCade4YjrQGE5iAiPCCLCI4KkE17W1OmzPNLVVLr6BaEiNZytLl1t8UDSCNeyTQGVUlTxPkH5auEl1UNpq8rVthbfLFxX91Q123LM7UrpP+0eVRl9lMIk9RibTVldXS8bIzBIGuFsvi5R7jqjkGnhT/h+/IbYkrU9n6L7OeaOER4kjfDh0swKsi+cy7G2jfL0HGPd1EVjrAASX7jzwvg+u51tGzcL7wLPMVPCPx1jBZAEwsdHnFc5v1jrpaqr8dGG36NILc4nC9ueKeXjMcKDJBGuMR5rOGBzJ28b/l20b4ZON+yfqk42hvnSnDFGYJB0wr8QRIRHBBHhEUFEeEQQr3BZgAjL2wUIWWILy9slNllEDgPcwaF3ERnfTHDp5/OZ2ralvu+FBcAdHHLZxncpx+Pxr0FYh/1+/xQO8CmWq6Pwf0bZWjiqe9wQ1uV0OtEvIat73x4KxmEAAAAASUVORK5CYII=" InformativeScreenshot="ba551981979556138f9169a6db7f5f7e.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Guardar como' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="841, 434, 88, 26" ElementType="Button" FriendlyName="'Cancelar'" FullSelectorArgument="&lt;wnd ctrlid='2' title='Cancelar' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='2' title='Cancelar' check:text='Cancelar' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFwAAAAeCAYAAAChf3k/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHKSURBVGhD7Zk7jsIwEIb3UGlSRZwjR6BB4gIpaBAVNY2v4qPkJLP5bQfGifMg6wwrMZY+Cb/J58mA5J+yLEmRQ4ULo8KFGQmvqopOpxPd73d6PB7KBuAODuFy6DcSjgHX65XO5zMdDgcqikLZANzBIVwOpUfCcSoYmFpEeR+4hFPuOBKOV0EjOx9wCafccSQc+Sc1UdkOnHLHKnxnVLgwHxJek2npVVpDdXLcHjRkqSVTp/r2R154bbrHJbJN3GZ4fVe+SriP7Ei2ON8k3EW3pSbVF2iszzKu2Ca0B0nm1dmams2LU9TzQMPb5Eu/byx8bj9r3bs4+33fRV746nzNxeAzE+Is9SK87PgA+jkskrs5fsygPTne7zde8+/8uwj3MvvCBXBJrD61ZhTdobgDG6y1ar98yApfyuGRPIydErBWeOpwp+bO7ZcPYeEdIaKS/1LQ16ccJ2NKAK/PpZSp9jB39X75kBcO3MOx8szrXp5vs2TXRPiz/irpH82ujFLK2v3y8RnhX4wKF0aFC6PChZkVrhcQeVm8gNArtrwsXrHpJXIe4A4OFy+RAQYcj0e6XC50u92UDcAdHA5lg5FwZV9UuDAqXJSSfgF+Z35NtF3mHgAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
                   </Sequence>
                 </ActivityAction>
-              </ui:BrowserScope.Body>
-            </ui:BrowserScope>
+              </ui:WindowScope.Body>
+            </ui:WindowScope>
+            <ui:LogMessage DisplayName="Mensaje archivo se ha descargado" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Archivo descargado&quot;]" />
+            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_NombreArchivo]">
+              <ui:ExcelApplicationScope.Body>
+                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                  </ActivityAction.Argument>
+                  <ui:ExcelReadRange AddHeaders="True" DataTable="[out_dt_Insumos]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="[in_NombreHoja]">
+                    <ui:ExcelReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:ExcelReadRange.Range>
+                  </ui:ExcelReadRange>
+                </ActivityAction>
+              </ui:ExcelApplicationScope.Body>
+            </ui:ExcelApplicationScope>
           </Sequence>
         </ActivityAction>
-      </ui:OpenBrowser.Body>
-    </ui:OpenBrowser>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-8, -8, 1382, 736" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="e1984919d03f695d5a57d4562caaf166.png" Selector="&lt;html app='chrome.exe' title='Generación de Correos - Google Drive' /&gt;" Url="[in_URLHojaRecursos]" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
   </Sequence>
 </Activity>
