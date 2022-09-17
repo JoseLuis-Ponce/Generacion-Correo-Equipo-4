@@ -1,0 +1,99 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GPO_006_001_Init" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_URL_HojaRecursos" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1240,515</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>GPO_006_001_Init_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GPO_006_001_Init" sap:VirtualizedContainerService.HintSize="476,392" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: Generación de Correos - Google Drive" sap:VirtualizedContainerService.HintSize="434,300" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="3e5de3f3-745f-49a9-b0bb-af7d78128c93" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,84" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-8, -8, 1382, 744" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="3c0914c979ffd03a0c8494a1eef6b218.png" Selector="&lt;html app='chrome.exe' title='Generación de Correos - Google Drive' /&gt;" Url="[in_URL_HojaRecursos]" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
