@@ -1,15 +1,14 @@
-﻿<Activity mc:Ignorable="sap sap2010" x:Class="GPO_006_001" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GPO_006_001" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_URLHojaRecursos" Type="InArgument(x:String)" />
     <x:Property Name="in_PathDescargas" Type="InArgument(x:String)" />
     <x:Property Name="in_NombreArchivo" Type="InArgument(x:String)" />
     <x:Property Name="in_NombreHoja" Type="InArgument(x:String)" />
-    <x:Property Name="out_dt_Insumos" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>597,2147</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>606,2519</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GPO_006_001_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,6 +50,8 @@
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>System.Security</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -90,22 +91,23 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="GPO.009.001&#xA;Ingresar al sheets &quot;Hoja de recursos&quot;." DisplayName="GPO_006_001" sap:VirtualizedContainerService.HintSize="552,2082" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="GPO.009.001&#xA;Ingresar al sheets &quot;Hoja de recursos&quot;." DisplayName="GPO_006_001" sap:VirtualizedContainerService.HintSize="552,2454" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Navegar al archivo Generación de Correos" sap:VirtualizedContainerService.HintSize="510,1948" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="241eb009-05d2-4e58-a058-09f4e0649184" Version="V2">
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Navegar al archivo Generación de Correos" sap:VirtualizedContainerService.HintSize="510,2320" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="241eb009-05d2-4e58-a058-09f4e0649184" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1732" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,2104" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -175,22 +177,36 @@
               </ui:WindowScope.Body>
             </ui:WindowScope>
             <ui:LogMessage DisplayName="Mensaje archivo se ha descargado" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Archivo descargado&quot;]" />
-            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_NombreArchivo]">
-              <ui:ExcelApplicationScope.Body>
-                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" CloseMode="Never" DisplayName="Abrir archivo Hoja de recursos" sap:VirtualizedContainerService.HintSize="434,539" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="d8f38cb4-556b-43df-966e-b0106c229309" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <ui:ExcelReadRange AddHeaders="True" DataTable="[out_dt_Insumos]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="[in_NombreHoja]">
-                    <ui:ExcelReadRange.Range>
-                      <InArgument x:TypeArguments="x:String">
-                        <Literal x:TypeArguments="x:String" Value="" />
-                      </InArgument>
-                    </ui:ExcelReadRange.Range>
-                  </ui:ExcelReadRange>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,250" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ClickType="Single" DisplayName="Click hoja que se utilizara" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d8f38cb4-556b-43df-966e-b0106c229309" Version="V1">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="108, 678, 76, 28" FriendlyName="'Insumos'" FullSelectorArgument="&lt;uia automationid='Hoja de recursos.xlsx' cls='ExcelBookTabControl' name='Hoja de recursos' /&gt;&lt;uia automationid='SheetTab' name='Insumos' role='Pestaña Hoja' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Hoja de recursos.xlsx' cls='ExcelBookTabControl' name='Hoja de recursos' /&gt;&lt;uia automationid='SheetTab' name='Insumos' role='Pestaña Hoja' check:fulltext='Insumos' /&gt;" Guid="0889ecb3-dee7-4d03-b8bf-65a1e61b4f57" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFAAAAAgCAYAAACFM/9sAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFXSURBVGhD7ZXLbcMwDIY9hBfoxTu0vfeuWXrQLAY0i1fxKKweUUIrElOLNgy0P4MvsETqgQ+yPBBCFRCojGGeZwJ9RIHTNBHYDwQqgUAlTwJDBy8AMhCoBAKVQKASCFRyoEBLi//Zau7vAoFKThIYnldy1vn/FItltXa59YYoxphcx9uN+dg8m/k9myVWR4bl6uv3caJAH3njccM8V9s0F1a2a/P5WGyq3cw/kXFeM5OW0rfa5vp9nHsCpdN0z9VqyraUe1Wb+1p703GBwNxO8Xj1pDG/mY/XliesVl+u38dFAmv90phX80m1ua+UmvvL2n1cLNBQuK7SKUjPqzMxF++xphS5He+85h3I4ev3cYHA8PyILCySPw4+VueKMW1hz23pKyys38GBAv8nEKgEApVAoBIIVAKBSt6+vyJ3gWAfEHgQEKgEApUMnx/vBPoZxnEk0MtIP/WrI4EwLDePAAAAAElFTkSuQmCC" InformativeScreenshot="21cfac3c1c5b923332c1e70fae27192d.png" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='Hoja de recursos.xlsx - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="516, 678, 28, 28" FriendlyName="'Agregar hoja'" FullSelectorArgument="&lt;uia automationid='Hoja de recursos.xlsx' cls='ExcelBookTabControl' name='Hoja de recursos' /&gt;&lt;uia automationid='SheetTab' name='Agregar hoja' role='botón' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Hoja de recursos.xlsx' cls='ExcelBookTabControl' name='Hoja de recursos' /&gt;&lt;uia automationid='SheetTab' name='Agregar hoja' role='botón' check:fulltext='Agregar hoja' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFySURBVFhH7ZVNjoJAEIU5BGdwYaL7mdmoLOQgqDfiJxAXegvZsnBDkBu4gvCz8AY1eZ1hYnrKRifD9AaSL7H71bNfmurGIOm5Xq9fv/7n0R8gCALSiTGZTEgnY4AxwEsB1us1ua5Ll8uF6roWZFkm5qBxnj6eCjCdTikMQ6qqig6HA+12O7JtW7DdbsUctP1+T7PZjP2PR/QGwOKn04nO5zOtViu2BkBDTRzHwsPVcPQGiKKIkiSh+XzO6vegBrXYLU7nUAbAFpdlScvl8od2u90E8jxqi6IQXlnjUAbwPI+OxyOrPQoA4IGX02SUAdDtm82G1VQB4IGX02SUAZqmIcuyvsfdoo/o6uCBtxurGCwA+qAbqxjkFTiOQ2masprMIE2Ii8n3fVaTUQbAUcJWvnIMF4vF3x1D8JuLCB5O5+gNoP0qBlo/RvdgQTRXnufUtq24ptHtmHv2ncu8FGAIxgBjAP0BPt7fSCeGaZqkD5M+AcBJT7yOoyM4AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
                 </ActivityAction>
-              </ui:ExcelApplicationScope.Body>
-            </ui:ExcelApplicationScope>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="-8, -8, 1382, 736" Arguments="c:\users\2e4q4la\documents\uipath\generacioncorreos_beeckerco\data\hoja de recursos.xlsx" FilePath="C:\Program Files\Microsoft Office\root\Office16\excel.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGvSURBVFhH7Zc9SEJRGIZdo9B+pRoShwhChIoQhCBbgsgpGgJpKyKIaAmClqDBoSmyLQikrbaCppaksdvUGDQ1FjQ0fvlezpGjfefcn86FkF548Hr4vvO+nh/U2L+8lK6uO3XIL1O1gyA4wkYvzsQEY2JE2OjFmZjgTEwIG704ExOciQlhoxdnYoIzMSFs9Bo5LpEXqcpq+ADd+wWnDoWhZ3eWBjYKbojfBGAn90vH/CjFt/ON9zKIX/5WgNRhke5fnlz2bk4a4zOVtcY4ntUe6ytw+nBJ0MfXpxsIYzCG8Npabz0ATGEOle/OafFsx32GskcrTbUgkjOweVV2DRFEfnqE4WojO4TSGHp9f2NrQGQBrp9rwp7fe0l8OkXJpQkaLOVcuBoTbAC579gCeR6wLVyt9QA4hFhyCPsOIPVWqFgPwF1DGeji8bapFlgNoF45dcnlrYBQo/ZEcgaC0BYBQn8dJ7byPwIERfzs0KtzfIh0dGWGKZFLRxugd26MvEguT7KT+0HY6NW3kCET/cUsO7FfhI1eXJNNhI1eXJNNhI1e9SKntcki3n/N2lyx2De7iUsgzKBEqQAAAABJRU5ErkJggg==" InformativeScreenshot="cd0e9b3f548693ed2ce9b6e1871ff623.png" IsExactTitleEnabled="True" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' title='Hoja de recursos.xlsx - Excel' /&gt;" />
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
