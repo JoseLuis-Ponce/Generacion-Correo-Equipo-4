@@ -3,11 +3,12 @@
   "description": "Se generan correos Beeckerco apartir del nombre y apellidos en la base de datos del  Excel Gpo.006_DAT_V2 Azure",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.Excel.Activities": "[2.12.3]",
+    "UiPath.Credentials.Activities": "[2.0.0]",
+    "UiPath.Excel.Activities": "[2.14.0-preview]",
     "UiPath.Mail.Activities": "[1.17.0-preview]",
-    "UiPath.System.Activities": "[22.4.4]",
-    "UiPath.Testing.Activities": "[22.4.3]",
-    "UiPath.UIAutomation.Activities": "[22.4.7]"
+    "UiPath.System.Activities": "[22.8.0-preview]",
+    "UiPath.Testing.Activities": "[22.8.2-preview]",
+    "UiPath.UIAutomation.Activities": "[22.8.0-preview]"
   },
   "webServices": [],
   "entitiesStores": [],
