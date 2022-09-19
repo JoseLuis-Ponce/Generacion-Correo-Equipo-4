@@ -120,12 +120,12 @@
                               <InArgument x:TypeArguments="x:String">[CurrentRow("Nombre").ToString+CurrentRow("Apellido Paterno").ToString+"@beeckerco.com"]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_5">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:String">[CorreoGenerado]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(CorreoGenerado,"[^\w\d]+"," ")]</InArgument>
+                              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(CorreoGenerado,"á", "a").replace("é", "e").replace(" í", "i").replace("ó", "o").replace("ú", "u")]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_4">
