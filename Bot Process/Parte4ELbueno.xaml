@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Parte4ELbueno" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1078,1548" sap2010:WorkflowViewState.IdRef="Parte4ELbueno_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Parte4ELbueno" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1078,1411" sap2010:WorkflowViewState.IdRef="Parte4ELbueno_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="36">
       <x:String>System.Activities</x:String>
@@ -40,7 +40,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -76,24 +76,23 @@
       <AssemblyReference>NPOI</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Parte4ELbueno" sap:VirtualizedContainerService.HintSize="552,1483" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Parte4ELbueno" sap:VirtualizedContainerService.HintSize="552,1346" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="Count" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_Insumos" />
-      <Variable x:TypeArguments="x:Int32" Name="Contador" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="510,1391" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Hoja de recursos.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="510,1254" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Hoja de recursos.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1282" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1145" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -114,13 +113,13 @@
                 <InArgument x:TypeArguments="x:Int32">0</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Insumos]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,892" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Insumos]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,792" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,778" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,678" sap2010:WorkflowViewState.IdRef="Sequence_18">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="sd:DataTable" Name="dt_Procesados" />
                       <Variable x:TypeArguments="x:String" Name="CorreoGenerado" />
@@ -137,14 +136,6 @@
                         </InArgument>
                       </ui:ExcelReadRange.Range>
                     </ui:ExcelReadRange>
-                    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_28">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:Int32">[Contador]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:Int32">0</InArgument>
-                      </Assign.Value>
-                    </Assign>
                     <Assign DisplayName="Asignar Fila" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_24">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Int32">[Count]</OutArgument>
@@ -182,7 +173,7 @@
                 </ActivityAction>
               </ui:ForEachRow.Body>
             </ui:ForEachRow>
-            <ui:ExcelRemoveDuplicatesRange DisplayName="Eliminar duplicados" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="ExcelRemoveDuplicatesRange_4" Range="[&quot;A&quot;+Contador.ToString]" SheetName="Procesados" />
+            <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
